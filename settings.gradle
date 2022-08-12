@@ -1,0 +1,13 @@
+pluginManagement {
+    repositories {
+        maven {
+            url 'https://maven.fabricmc.net/'
+        }
+        gradlePluginPortal()
+    }
+}
+
+
+rootProject.name = 'Xibao-Fabric'
+include 'Fabric-1.19'
+include 'Fabric-1.18.2'
