@@ -13,4 +13,7 @@ public interface DisconnectedScreenAccessor {
 
     @Accessor("reason")
     Text getReason();
+
+    @Accessor("reasonHeight")
+    int getReasonHeight();
 }

@@ -18,7 +18,7 @@ public class MinecraftClientMixin {
 
     @Inject(method = "getMusicType", at = @At("TAIL"), cancellable = true)
     public void getMusicTypeInject(CallbackInfoReturnable<MusicSound> cir) {
-        if (XibaoPlusPlusConfig.shouldPlayMusic) {
+        if (XibaoPlusPlusConfig.playMusic && XibaoPlusPlusConfig.shouldPlayMusic) {
             if (MinecraftClient.getInstance().currentScreen instanceof DisconnectedScreen) {
                 cir.setReturnValue(XibaoPlusPlusMusic.XIBAO_MUSIC);
             }
