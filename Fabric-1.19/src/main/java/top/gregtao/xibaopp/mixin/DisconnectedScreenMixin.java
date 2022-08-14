@@ -56,7 +56,7 @@ public class DisconnectedScreenMixin extends Screen {
     @Inject(method = "render",
             at = @At(value = "INVOKE", target = "Ljava/util/Objects;requireNonNull(Ljava/lang/Object;)Ljava/lang/Object;"))
     private void renderInject(MatrixStack matrices, int mouseX, int mouseY, float delta, CallbackInfo ci) {
-        if (XibaoPlusPlusConfig.showPicture) RenderHelper.renderStretchTexture(this.width, this.height, 180,
+        if (XibaoPlusPlusConfig.showPicture) RenderHelper.renderStretchTexture(this.width, this.height, 225,
                 new Identifier("xibaopp", "textures/xibao.png"));
         if (XibaoPlusPlusConfig.displaySnow || XibaoPlusPlusConfig.tempSnow) SnowAnimation.INSTANCE.tick(this.width, this.height);
     }
