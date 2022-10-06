@@ -97,3 +97,48 @@ project(":Fabric-1.18.2") {
         }
     }
 }
+
+project(":Fabric-1.17.1") {
+
+    apply plugin: 'fabric-loom'
+
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+
+    archivesBaseName = project.archives_base_name
+    setVersion(project.mod_version)
+    setGroup(project.maven_group + ".1_17_1")
+
+    repositories {
+    }
+
+    dependencies {
+        minecraft "com.mojang:minecraft:${project.minecraft_version}"
+        mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
+        modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+
+        modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+
+    }
+
+    processResources {
+        inputs.property "version", project.version
+
+        filesMatching("fabric.mod.json") {
+            expand "version": project.version
+        }
+    }
+
+    tasks.withType(JavaCompile).configureEach {
+        it.options.release = 16
+    }
+
+    java {
+    }
+
+    jar {
+        from("LICENSE") {
+            rename { "${it}_${project.archivesBaseName}"}
+        }
+    }
+}
