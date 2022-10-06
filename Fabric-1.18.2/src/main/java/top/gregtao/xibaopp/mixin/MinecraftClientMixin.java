@@ -10,7 +10,6 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import top.gregtao.xibaopp.XibaoPlusPlusConfig;
-import top.gregtao.xibaopp.XibaoPlusPlusMusic;
 
 @Environment(EnvType.CLIENT)
 @Mixin(MinecraftClient.class)
@@ -20,7 +19,7 @@ public class MinecraftClientMixin {
     public void getMusicTypeInject(CallbackInfoReturnable<MusicSound> cir) {
         if (XibaoPlusPlusConfig.playMusic && XibaoPlusPlusConfig.shouldPlayMusic) {
             if (MinecraftClient.getInstance().currentScreen instanceof DisconnectedScreen) {
-                cir.setReturnValue(XibaoPlusPlusMusic.XIBAO_MUSIC);
+                cir.setReturnValue(XibaoPlusPlusConfig.type.music);
             }
         }
     }

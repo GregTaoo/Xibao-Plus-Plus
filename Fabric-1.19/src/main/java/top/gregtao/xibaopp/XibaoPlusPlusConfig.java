@@ -18,6 +18,8 @@ public class XibaoPlusPlusConfig {
     public static boolean showPicture = true;
     public static boolean displaySnow = false;
 
+    public static XibaoType type = XibaoType.XIBAO;
+
     public static void loadConfig() throws Exception {
         if (!file.exists()) {
             storeConfig();
@@ -28,6 +30,7 @@ public class XibaoPlusPlusConfig {
         playMusic = properties.getOrDefault("playMusic", "true").equals("true");
         showPicture = properties.getOrDefault("showPicture", "true").equals("true");
         displaySnow = properties.getOrDefault("displaySnow", "false").equals("true");
+        type = XibaoType.getByString(properties.getProperty("type"));
     }
 
     public static void storeConfig() throws IOException {
@@ -35,6 +38,12 @@ public class XibaoPlusPlusConfig {
         properties.setProperty("playMusic", String.valueOf(playMusic));
         properties.setProperty("showPicture", String.valueOf(showPicture));
         properties.setProperty("displaySnow", String.valueOf(displaySnow));
+        properties.setProperty("type", type.type);
         properties.store(new FileWriter(file), "Xibao Plus Plus");
+    }
+
+    public static void switchAlbum() {
+        XibaoType[] types = XibaoType.values();
+        type = types[(type.ordinal() + 1) % types.length];
     }
 }

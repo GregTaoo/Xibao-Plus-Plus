@@ -1,4 +1,5 @@
 {
-  "gui.stopMusic": "Stop Playing Music",
-  "gui.dropSnow": "DROP FLOWERS"
+  "gui.stopMusic": "Stop Music",
+  "gui.dropSnow": "Flowers",
+  "gui.switchAlbum": "Switch"
 }

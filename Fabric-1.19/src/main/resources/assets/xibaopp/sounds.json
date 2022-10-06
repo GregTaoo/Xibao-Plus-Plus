@@ -4,5 +4,10 @@
       "xibaopp:haoyunlai",
       "xibaopp:chunjiexuqu"
     ]
+  },
+  "beibao": {
+    "sounds": [
+      "xibaopp:yijianmei"
+    ]
   }
 }

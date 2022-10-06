@@ -9,10 +9,7 @@ import java.util.Random;
 
 public class SnowAnimation {
     public static SnowAnimation INSTANCE;
-    protected static Identifier[] SOURCE = {
-            new Identifier("xibaopp", "textures/yellow_snow.png"),
-            new Identifier("xibaopp", "textures/red_snow.png")
-    };
+    private Identifier[] source;
     private int lastWidth, lastHeight;
     private float amount = 0.1f;
     private final Random random;
@@ -23,7 +20,8 @@ public class SnowAnimation {
         this.snows = new ArrayList<>();
     }
 
-    public void tick(int width, int height) {
+    public void tick(int width, int height, Identifier[] source) {
+        this.source = source;
         if (width != this.lastWidth || height != this.lastHeight) {
             this.snows.clear();
             this.lastWidth = width;
@@ -31,7 +29,7 @@ public class SnowAnimation {
         }
         this.spawnGroup();
         for (Snow snow : this.snows) {
-            RenderHelper.renderParticle(snow.x, height - snow.y, 4, 4, SOURCE[snow.source]);
+            RenderHelper.renderParticle(snow.x, height - snow.y, 4, 4, this.source[snow.source % this.source.length]);
             snow.move();
             if (snow.y > height) {
                 snow.removed = true;
@@ -55,7 +53,7 @@ public class SnowAnimation {
     }
 
     public int getSourceIndex() {
-        return this.random.nextInt(SOURCE.length);
+        return this.random.nextInt(this.source.length);
     }
 
     public void spawn() {
@@ -65,6 +63,7 @@ public class SnowAnimation {
     }
 
 }
+
 class Snow {
     public int baseX, x, y, k, source;
     public boolean removed = false;

@@ -4,7 +4,7 @@
   "version": "${version}",
 
   "name": "Xibao",
-  "description": "Congratulations! You lost the connection!",
+  "description": "Congratulations! You had lost the connection!",
   "authors": [
     "GregTao",
     "TeaCon(灵感)"

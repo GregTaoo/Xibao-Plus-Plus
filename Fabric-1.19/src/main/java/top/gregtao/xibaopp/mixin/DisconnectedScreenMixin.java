@@ -9,7 +9,6 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableTextContent;
-import net.minecraft.util.Identifier;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -40,24 +39,32 @@ public class DisconnectedScreenMixin extends Screen {
         }
         this.addDrawableChild(new ButtonWidget(
                 this.width / 2 - 100, this.height - 22,
-                 XibaoPlusPlusConfig.displaySnow ? 200 : 99, 20, Text.translatable("gui.stopMusic"), button -> XibaoPlusPlusConfig.shouldPlayMusic = false));
-        if (!XibaoPlusPlusConfig.displaySnow) {
-            this.addDrawableChild(new ButtonWidget(
-                    this.width / 2 + 2, this.height - 22,
-                    99, 20, Text.translatable("gui.dropSnow"),
-                    button -> {
-                        SnowAnimation.INSTANCE = new SnowAnimation(XibaoPlusPlusConfig.random);
-                        XibaoPlusPlusConfig.tempSnow = true;
-                    }));
-        }
+                66, 20, Text.translatable("gui.stopMusic"),
+                button -> XibaoPlusPlusConfig.shouldPlayMusic = !XibaoPlusPlusConfig.shouldPlayMusic));
+        this.addDrawableChild(new ButtonWidget(
+                this.width / 2 - 33, this.height - 22,
+                66, 20, Text.translatable("gui.dropSnow"),
+                button -> {
+                    SnowAnimation.INSTANCE = new SnowAnimation(XibaoPlusPlusConfig.random);
+                    XibaoPlusPlusConfig.tempSnow = !XibaoPlusPlusConfig.tempSnow;
+                }));
+        this.addDrawableChild(new ButtonWidget(
+                this.width / 2 + 34, this.height - 22,
+                66, 20, Text.translatable("gui.switchAlbum"),
+                button -> XibaoPlusPlusConfig.switchAlbum()));
         if (XibaoPlusPlusConfig.displaySnow) SnowAnimation.INSTANCE = new SnowAnimation(XibaoPlusPlusConfig.random);
     }
 
-    @Inject(method = "render",
-            at = @At(value = "INVOKE", target = "Ljava/util/Objects;requireNonNull(Ljava/lang/Object;)Ljava/lang/Object;"))
+    @Inject(method = "render", at = @At(value = "INVOKE",
+            target = "Lnet/minecraft/client/font/MultilineText;drawCenterWithShadow(Lnet/minecraft/client/util/math/MatrixStack;II)I"))
     private void renderInject(MatrixStack matrices, int mouseX, int mouseY, float delta, CallbackInfo ci) {
-        if (XibaoPlusPlusConfig.showPicture) RenderHelper.renderStretchTexture(this.width, this.height, 225,
-                new Identifier("xibaopp", "textures/xibao.png"));
-        if (XibaoPlusPlusConfig.displaySnow || XibaoPlusPlusConfig.tempSnow) SnowAnimation.INSTANCE.tick(this.width, this.height);
+        if (this.client == null) return;
+        if (XibaoPlusPlusConfig.showPicture) {
+            RenderHelper.renderStretchTexture(this.width, this.height, 225,
+                    XibaoPlusPlusConfig.type.background);
+        }
+        if (XibaoPlusPlusConfig.displaySnow || XibaoPlusPlusConfig.tempSnow) {
+            SnowAnimation.INSTANCE.tick(this.width, this.height, XibaoPlusPlusConfig.type.snows);
+        }
     }
 }
