@@ -14,7 +14,7 @@
   },
 
   "license": "GPL v3",
-  "icon": "assets/xibaopp/textures/xibao.png",
+  "icon": "assets/xibaopp/textures/logo.png",
 
   "environment": "*",
   "entrypoints": {

@@ -22,10 +22,10 @@ public enum XibaoType {
             "beibao"
     )
     ;
-    public MusicSound music;
-    public Identifier background;
-    public Identifier[] snows;
-    public String type;
+    public final MusicSound music;
+    public final Identifier background;
+    public final Identifier[] snows;
+    public final String type;
 
     XibaoType(MusicSound music, Identifier background, Identifier[] snows, String type) {
         this.music = music;

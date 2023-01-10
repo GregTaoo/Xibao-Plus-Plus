@@ -29,14 +29,6 @@ public class DisconnectedScreenMixin extends Screen {
     private void initInject(CallbackInfo ci) {
         XibaoPlusPlusConfig.shouldPlayMusic = true;
         XibaoPlusPlusConfig.tempSnow = false;
-        Text reason = ((DisconnectedScreenAccessor) this).getReason();
-        if (reason instanceof MutableText text) {
-            if (text.getContent() instanceof TranslatableTextContent content) {
-                if (content.getKey().startsWith("multiplayer.disconnect.banned")) { //人性化设计
-                    XibaoPlusPlusConfig.shouldPlayMusic = false;
-                }
-            }
-        }
         this.addDrawableChild(new ButtonWidget(
                 this.width / 2 - 100, this.height - 22,
                 66, 20, Text.translatable("gui.stopMusic"),
