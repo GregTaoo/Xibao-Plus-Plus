@@ -1,6 +1,8 @@
-## вт╤╗рЕрТюж/м╪ф╛й╧сцвйт╢╟Э
-б╥╬╤ё╨
+## Х┤╙Е╝ Д╧┴И÷ЁД╧░/Е⌡╬Г┴┤Д╫©Г■╗Х╣└Ф╨░Е▄┘
+Х╥╞Е╬└О╪ 
 - assets/xibaopp/sounds
 - assets/xibaopp/textures
 
-╦пп╩ @HaiHome-114514 ╣дндятндсОятнд╪Ч
+Ф└÷Х╟╒ @HaiHome-114514 Г └Ф√┤Х╗─Ф√┤Х╞╜Х╗─Ф√┤Д╩╤
+
+Д╦▀Х╫╫О╪ [https://www.mcmod.cn/download/7249.html](https://www.mcmod.cn/download/7249.html)
