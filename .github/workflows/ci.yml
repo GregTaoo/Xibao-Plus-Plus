@@ -1,28 +1,21 @@
 name: Build Mod
 
 on:
-  push:
-    branches: [ 'Fabric' ]
-    paths:
-      - src/**
-      - build.gradle
-      - gradle.properties
-      - settings.gradle
   workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        java: [ '8', '16', '17' ]
     steps:
       - name: Check out
         uses: actions/checkout@v2
       - name: Set up JDK
         uses: actions/setup-java@v2
         with:
-          java-version: ${{ matrix.java }}
+          java-version: |
+            8
+            16
+            17
           distribution: 'adopt'
       - name: Set build number
         run: sed -i "s/undefined/$GITHUB_RUN_NUMBER/g" gradle.properties
