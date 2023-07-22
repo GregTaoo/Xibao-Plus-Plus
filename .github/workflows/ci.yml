@@ -38,7 +38,7 @@ jobs:
         run: ./gradlew build
         
       - name: Upload JAR file
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: Xibao-Plus-Plus Dev
-          path: build/libs/
+          path: ./*/build/libs/
