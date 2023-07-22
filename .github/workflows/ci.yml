@@ -40,5 +40,5 @@ jobs:
       - name: Upload JAR file
         uses: actions/upload-artifact@v2
         with:
-          name: Carpet SkyDynamic Addition
+          name: Xibao-Plus-Plus Dev
           path: build/libs/
