@@ -1,0 +1,44 @@
+name: Build Mod
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    
+      - name: Check out
+        uses: actions/checkout@v2
+        
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'adopt'
+          
+      - name: Cache gradle files
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+            ./.gradle/loom-cache
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle', '**/gradle.properties', '**/*.accesswidener') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+          
+      - name: Set build number
+        run: sed -i "s/undefined/$GITHUB_RUN_NUMBER/g" gradle.properties
+        
+      - name: Grant execute permission
+        run: chmod +x gradlew
+        
+      - name: Build with Gradle
+        run: ./gradlew build
+        
+      - name: Upload JAR file
+        uses: actions/upload-artifact@v3
+        with:
+          name: Xibao-Plus-Plus Dev
+          path: ./*/build/libs/

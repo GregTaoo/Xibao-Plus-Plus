@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "id": "xibaopp",
+  "version": "${version}",
+
+  "name": "Xibao",
+  "description": "Congratulations! You had lost the connection!",
+  "authors": [
+    "GregTao",
+    "TeaCon(灵感)"
+  ],
+  "contact": {
+     "email": "本模组内容若有侵权请联系gregtaoo@outlook.com删除"
+  },
+
+  "license": "GPL v3",
+  "icon": "assets/xibaopp/textures/logo.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      "top.gregtao.xibaopp.XibaoPlusPlusMain"
+    ]
+  },
+  "mixins": [
+    "xibaopp.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.14.6",
+    "fabric": "*",
+    "minecraft": "1.20",
+    "java": ">=17"
+  },
+  "suggests": {
+    "another-mod": "*"
+  }
+}
