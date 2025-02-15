@@ -9,6 +9,7 @@ pluginManagement {
 
 
 rootProject.name = 'Xibao-Fabric'
+include 'Fabric-1.21.4'
 include 'Fabric-1.21.1'
 include 'Fabric-1.20.6'
 include 'Fabric-1.20.4'

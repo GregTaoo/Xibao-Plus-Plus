@@ -1,5 +1,5 @@
 plugins {
-    id 'fabric-loom' version '1.6-SNAPSHOT' apply(false)
+    id 'fabric-loom' version '1.9.2' apply(false)
     id 'maven-publish'
 }
 
@@ -56,6 +56,15 @@ subprojects {
         from("LICENSE") {
             rename { "${it}_${project.archivesBaseName}"}
         }
+    }
+}
+
+project(":Fabric-1.21.4") {
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
+
+    tasks.withType(JavaCompile).configureEach {
+        it.options.release = 21
     }
 }
 
